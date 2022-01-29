@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>首页</title>
+    <link rel="shortcut icon" href="https://yan-blog.oss-cn-beijing.aliyuncs.com/DRIVER/BilibiliSuitNaive/favicon.ico">
+</head>
+
+<body>
+    <div class="topbar">
+        <ul>
+            <li style="margin-left: 5%"><img class="icon" src="https://yan-blog.oss-cn-beijing.aliyuncs.com/DRIVER/BilibiliSuitNaive/bilibili.png" alt=""></li>
+            <li style="text-align: center">
+                <font style="font-size: 21px"><b>Bilibili装扮</b></font>
+            </li>
+
+            <li style="float: right; margin-right: 5%;">
+                <a href="https://github.com/YHanchao/bilibiliSuitNaive" style="color: #fff;">GitHub</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main_suit">
+        <div class="single_suit">
+            <div class="suit_info">
+                <div class="suit_name">
+                    <b>下载链接</b>
+                </div>
+                <div class="suit_desc">
+                    <a href="https://yan-blog.oss-cn-beijing.aliyuncs.com/DRIVER/BilibiliSuitNaive/suit-naive-Windows-1.0.0.zip">Windows 版本</a><br/>
+                    <a href="https://yan-blog.oss-cn-beijing.aliyuncs.com/DRIVER/BilibiliSuitNaive/suit-naive-Python-1.0.0.zip">Python 版本</a><br/> 请仔细阅读下方的使用说明后再下载使用 :)
+                </div>
+            </div>
+        </div>
+        <div class="single_suit">
+            <div class="suit_info">
+                <div class="suit_name">
+                    <b>运行环境</b>
+                </div>
+                <div class="suit_desc">
+                    1. Python 版本：请是先安装支持 3.x 版本的 <b>Requests</b> 库及 <b>Flask</b> 库，安装了必要的环境后运行main.py即可运行<br/> 2. Windows 版本：直接运行 main.exe 即可
+                </div>
+                <div class="suit_name">
+                    <b>使用说明</b>
+                </div>
+                <div class="suit_desc">
+                    程序支持简单的装扮资源搜索与获取，装扮资源主要保留了emoji、粉丝IP主页装扮、装扮其他素材三类。
+                    <br/> 点击“获取”之后相应装扮素材保存在目录'src'中，其他缓存文件可以通过点击页面最下方的“清空缓存”以清理。
+                    <br/> 页面上方的“刷新”将会重新获取当前所有装扮列表，初次运行时已经默认加载，相应文件保存在'suit_list.json'中
+                    <br/> 程序运行中产生的意外问题记录保存在'error_log'文件中
+                </div>
+            </div>
+            <div class="suit_info">
+                <div class="suit_name">
+                    <b>已知问题</b>
+                </div>
+                <div class="suit_desc">
+                    1. 使用代理进行访问时可能会出现无响应的情况
+                    <br/> 2. 部分素材由于包含非法字符无法以原名称保存
+                </div>
+            </div>
+        </div>
+        <div class="single_suit">
+            <div class="suit_info">
+                <div class="suit_name">
+                    <b>注意事项</b>
+                </div>
+                <div class="suit_desc">
+                    1. 程序仅限自用，供学习参考，请在下载后 24 小时内删除；
+                    <br/> 2. 请不要短时间内进行大量操作，否则可能有 IP 封禁等风险；
+                    <br/> 3. 请不要将脚本及脚本产生内容用作商业用途；
+                    <br/> 4. 程序未经标准测试，可能在运行中产生 bug，请不要使用奇怪的姿势试探 bug。
+                </div>
+            </div>
+        </div>
+        <div class="single_suit">
+            <div class="suit_info">
+                <div class="suit_name">
+                    <b>致谢</b>
+                </div>
+                <div class="suit_desc">
+                    程序编写时参考的项目列表：
+                    <br/>
+                    <a href="https://github.com/SocialSisterYi/bilibili-API-collect">SocialSisterYi/bilibili-API-collect</a>
+                    <br/>虽然该 API 集合中未找到程序所依赖的 API，但这一项目提供了本程序的最初构想。本程序所依赖的 API 通过 js 分析法得到。
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+
+</html>
