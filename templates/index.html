@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
+    <title>首页</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
+</head>
+
+<body>
+    <div class="topbar">
+        <ul>
+            <li style="margin-left: 5%"><img class="icon" src="{{url_for('static', filename='bilibili.png')}}" alt=""></li>
+            <li style="text-align: center">
+                <font style="font-size: 21px"><b>Bilibili装扮</b></font>
+            </li>
+
+            <li style="float: right;margin-right: 5%;">
+                <a href="https://github.com/YHanchao/bilibiliSuitNaive" style="color: #fff;">GitHub</a>
+            </li>
+            <li style="float: right;">
+                <a href="http://localhost:1418/about/" style="color: #fff;">关于</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div class="content">
+        {% for message in get_flashed_messages() %}
+        <div class="out-message" style="margin: 0px 20px 0px 20px">
+            <div class="message">
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="naive-query">
+            <div class="query_self">
+                <form action="http://localhost:1418/" method="POST">
+                    <input type="text" name="query" class="searchTerm" placeholder="输入装扮名字以查询" />
+                    <input type="submit" name="query-click" class="button" value="查询"></input>
+                    <input type="submit" name="refresh-click" class="button" value="刷新"></input>
+                </form>
+            </div>
+            <div class="jump_box">
+                <form action="http://localhost:1418/" method="POST">
+                    {% if now_page > 0 %}
+                    <input type="submit" name="{{now_page - 1}}" class="button" value="前一页"></input>
+                    {% endif %} {{now_page + 1}} / {{total_page}} {% if now_page
+                    < total_page - 1 %} <input type="submit" name="{{now_page + 1}}" class="button" value="后一页">
+                        </input>
+                        {% endif %}
+                </form>
+            </div>
+        </div>
+
+        <div class="main_suit">
+            {% for suit in content %}
+            <div class="single_suit">
+                <div class="suit_logo">
+                    <img class="img" src="{{url_for('static', filename='temp/' + suit.cover)}}" alt="" loading="lazy">
+                    <form action="{{'http://localhost:1418/res/'}}" method="POST">
+                        <input type="submit" name="{{suit.item_id}}" class="button_get" value="获取"></input>
+                    </form>
+                </div>
+                <div class="suit_info">
+                    <div class="suit_name">
+                        <b>{{suit.name}}</b>
+                    </div>
+                    <div class="suit_desc">
+                        分类：{{suit.category}}<br/> 装扮ID：{{suit.item_id}}<br/> 介绍：{{suit.desc}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="naive-query" style="padding: 10px">
+            <div class="jump_box">
+                <form action="http://localhost:1418/" method="POST" style="padding: 7px">
+                    {% if now_page > 0 %}
+                    <input type="submit" name="{{now_page - 1}}" class="button" value="前一页"></input>
+                    {% endif %} {{now_page + 1}} / {{total_page}} {% if now_page
+                    < total_page - 1 %} <input type="submit" name="{{now_page + 1}}" class="button" value="后一页">
+                        </input>
+                        {% endif %}
+                </form>
+                <form action="http://localhost:1418/temp/" style="padding: 7px">
+                    <input type="submit" name="temp" class="button" value="清空缓存"></input>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
