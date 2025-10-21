@@ -5,6 +5,15 @@ import errors
 from json import dumps, loads
 from math import ceil
 
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+}
+
 
 def get_all_suit(query=None, refresh=0, page=0):
     '''
@@ -18,19 +27,23 @@ def get_all_suit(query=None, refresh=0, page=0):
     base_list = list()
     if (refresh == 1 or not osPathExists('suit_list.json')):
         try:
-            res = rqGet('https://api.bilibili.com/x/garb/mall/suit/all')
+            res = rqGet('https://api.bilibili.com/x/garb/mall/suit/all', headers=headers)
         except:
             errors._show_error(1)
             return list(), 0, 0, 1
 
-        res = res.json()
+        res = loads(res.text)
         for cat in res['data']['category']:
+            # print(cat)
+            if cat['suits'] is None: continue
             for suit in cat['suits']:
+                print(suit)
+                _desc = suit['properties'].get('desc', '暂无')
                 base_list.append({
                     'name': suit['name'],
                     'item_id': suit['item_id'],
                     'category': cat['name'],
-                    'desc': suit['properties']['desc'],
+                    'desc': _desc,
                     'cover': suit['properties']['image_cover']
                 })
         try:
@@ -96,7 +109,7 @@ def get_suit(suit_id, base_dir='./src/'):
     try:
         rq_get = rqGet(
             'https://api.bilibili.com/x/garb/mall/item/suit/v2?&part=suit&item_id='
-            + str(suit_id))
+            + str(suit_id), headers=headers)
     except:
         errors._show_error(1)
         return dict(), 1
